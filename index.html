@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LCARS</title>
+    <link rel="stylesheet" href="css/lcars.css">
+    <style>
+        html, body { background: black }
+    </style>
+</head>
+<script>
+    var toggle=1
+    var toggle2=1
+    var attr1
+    var attr2
+    var extradie
+    function changeAttr1(thing) {
+        if (toggle==1) {
+            document.getElementById(thing).classList.remove('lcars-purple-bg');
+            thingvalue=thing+"value";
+            attr1=document.getElementById(thingvalue).innerHTML
+            toggle=2;
+        } else {
+            document.getElementById(thing).classList.add('lcars-purple-bg');
+            attr1=0;
+            toggle=1;
+        }
+    }
+    function changeAttr2(thing) {
+        if (toggle2==1) {
+            document.getElementById(thing).classList.remove('lcars-salmon-bg');
+            thingvalue=thing+"value";
+            attr2=document.getElementById(thingvalue).innerHTML
+            toggle2=2;
+        } else {
+            document.getElementById(thing).classList.add('lcars-salmon-bg');
+            attr2=0;
+            toggle2=1;
+        }
+    }
+    function roll() {
+        var target=parseInt(attr1)+parseInt(attr2);
+        var successes=0
+        var complications=0
+        var roll1=Math.floor(Math.random() * 20) + 1
+        if (roll1<=target) {successes=successes+1}
+        if (roll1<=parseInt(attr2)) {successes=successes+1}
+        if (roll1==20) {complications=complications+1}
+        var roll2=Math.floor(Math.random() * 20) + 1
+        if (roll2<=target) {successes=successes+1}
+        if (roll2<=parseInt(attr2)) {successes=successes+1}
+        if (roll2==20) {complications=complications+1}
+        if (extradie >=1) {
+            var roll3=Math.floor(Math.random() * 20) + 1
+            if (roll3<=target) {successes=successes+1}
+            if (roll3<=parseInt(attr2)) {successes=successes+1}
+            if (roll3==20) {complications=complications+1}
+        }
+        if (extradie >=2) {
+            var roll4=Math.floor(Math.random() * 20) + 1
+            if (roll4<=target) {successes=successes+1}
+            if (roll4<=parseInt(attr2)) {successes=successes+1}
+            if (roll4==20) {complications=complications+1}
+        }
+        if (extradie >=3) {
+            var roll5=Math.floor(Math.random() * 20) + 1
+            if (roll5<=target) {successes=successes+1}
+            if (roll5<=parseInt(attr2)) {successes=successes+1}
+            if (roll5==20) {complications=complications+1}
+        }
+        document.getElementById('successes').innerHTML=successes
+        document.getElementById('complications').innerHTML=complications
+    }
+</script>
+<body>
+    <div class="lcars-container" style="font-family: 'Arial Narrow', Arial, sans-serif">
+        <div class="lcars-row">
+            <div class="lcars-column u-2-12">
+                <ul class="lcars-menu">
+                    <li class="lcars-orange-bg tall"></li>
+                </ul>
+            </div>
+            <div class="lcars-column u-10-12">
+                <a href="#" class="lcars-button radius spaced">
+                    NAME 
+                    <span class="lcars-button-addition">Joal Etahn</span>
+                </a>
+                <a href="#" class="lcars-button radius">
+                    SPECIES 
+                    <span class="lcars-button-addition">Trill</span>
+                </a>
+                <a href="#" class="lcars-button radius">
+                    RANK 
+                    <span class="lcars-button-addition">Lieutenant Commander</span>
+                </a>
+                <a href="#" class="lcars-button radius">
+                    ENVIRONMENT 
+                    <span class="lcars-button-addition">Isolated Colony</span>
+                </a>
+                <a href="#" class="lcars-button radius">
+                    UPBRINGING 
+                    <span class="lcars-button-addition">Agricultural/Rural</span>
+                </a>
+                <a href="#" class="lcars-button radius">
+                    ASSIGNMENT 
+                    <span class="lcars-button-addition">Science Officer</span>
+                </a>
+                <a href="#" class="lcars-button radius">
+                    TRAITS 
+                    <span class="lcars-button-addition">Trill, Etahn Symbiote</span>
+                </a>
+            </div>
+        </div>
+        <div class="lcars-row spaced">
+            <div class="lcars-column u-2-12 lcars-elbow left top lcars-orange-bg">
+                <a href="#" onclick="roll()"></a>
+            </div>
+            <div class="lcars-column u-10-12 lcars-divider bottom lcars-orange-peach-divide">
+                <h1 class="right lcars-orange-color">STARFLEET PERSONNEL FILE</h1>
+            </div>
+        </div>
+        <div class="lcars-row">
+            <div class="lcars-column u-1-8 lcars-elbow left bottom lcars-grayBlue-bg">
+                <!--<a href="#">Side Button 1</a>-->
+            </div>
+            <div class="lcars-column u-6-8 lcars-divider lcars-grayBlue-purple-divide">
+                <div class="lcars-column u-2-8">
+                    <div class="lcars-button left lcars-purple-color">
+                        <span class="lcars-button-addition lcars-purple-color">ATTRIBUTES</span>
+                    </div>
+                </div>
+                <div class="lcars-column u-2-8">
+                    <div onclick="roll()" class="lcars-button left" id=roll>
+                        ROLL
+                        <span class="lcars-button-addition lcars-blue-color" id="successes">0</span>
+                    </div>
+                    <div class="lcars-button right">
+                        
+                        <span class="lcars-button-addition lcars-red-color" id="complications">0</span>
+                    </div>
+                </div>
+                <div class="lcars-column u-4-8">
+                    <div class="lcars-button right lcars-purple-color">
+                        <span class="lcars-button-addition lcars-salmon-color">DISCIPLINES</span>
+                    
+                    </div>
+                </div>
+            </div>
+            <div class="lcars-column u-1-8 lcars-elbow right bottom lcars-grayBlue-bg">
+                <!--<a href="#">Side Button 1</a>-->
+            </div>
+        </div>
+        <div class="lcars-row">
+            <div class="lcars-column u-1-8">
+                <ul class="lcars-menu">
+                    <li class="lcars-grayBlue-bg">EQUIPMENT</li>
+                    <li class="lcars-grayBlue-bg">Uniform</li>
+                    <li class="lcars-pink-bg">Combadge</li>
+                    
+                </ul>
+            </div>
+            <div class="lcars-column u-1-8">
+                <a href="#" onclick="changeAttr1('control')" class="lcars-button radius lcars-purple-bg lcars-white-color" id="control">
+                    CONTROL 
+                    <span class="lcars-button-addition" id="controlvalue">10</span>
+                </a>
+                <a href="#" onclick="changeAttr1('daring')" class="lcars-button radius lcars-purple-bg lcars-white-color" id="daring">
+                    DARING
+                    <span class="lcars-button-addition" id="daringvalue">07</span>
+                </a>
+            </div>
+            <div class="lcars-column u-1-8">
+                <a href="#" onclick="changeAttr1('fitness')" class="lcars-button radius lcars-purple-bg lcars-white-color" id="fitness">
+                    FITNESS 
+                    <span class="lcars-button-addition" id="fitnessvalue">08</span>
+                </a>
+                <a href="#" onclick="changeAttr1('insight')" class="lcars-button radius lcars-purple-bg lcars-white-color" id="insight">
+                    INSIGHT
+                    <span class="lcars-button-addition" id="insightvalue">09</span>
+                </a>
+            </div>
+            <div class="lcars-column u-1-8">
+                <a href="#" onclick="changeAttr1('presence')" class="lcars-button radius lcars-purple-bg lcars-white-color" id="presence">
+                    PRESENCE 
+                    <span class="lcars-button-addition" id="presencevalue">10</span>
+                </a>
+                <a href="#" onclick="changeAttr1('reason')" class="lcars-button radius lcars-purple-bg lcars-white-color" id="reason">
+                    REASON
+                    <span class="lcars-button-addition" id="reasonvalue">12</span>
+                </a>
+            </div>
+            <div class="lcars-column u-1-8">
+                <a href="#" onclick="changeAttr2('command')" class="lcars-button radius lcars-salmon-bg lcars-white-color" id="command">
+                    COMMAND 
+                    <span class="lcars-button-addition" id="commandvalue">03</span>
+                </a>
+                <a href="#" onclick="changeAttr2('conn')" class="lcars-button radius lcars-salmon-bg lcars-white-color"id="conn">
+                    CONN
+                    <span class="lcars-button-addition" id="connvalue">02</span>
+                </a>
+            </div>
+            <div class="lcars-column u-1-8">
+                <a href="#" onclick="changeAttr2('security')" class="lcars-button radius lcars-salmon-bg lcars-white-color" id="security">
+                    SECURITY 
+                    <span class="lcars-button-addition" id="securityvalue">02</span>
+                </a>
+                <a href="#" onclick="changeAttr2('engineering')" class="lcars-button radius lcars-salmon-bg lcars-white-color" id="engineering">
+                    ENGINEERING
+                    <span class="lcars-button-addition" id="engineeringvalue">01</span>
+                </a>
+            </div>
+            <div class="lcars-column u-1-8">
+                <a href="#" onclick="changeAttr2('science')" class="lcars-button radius lcars-salmon-bg lcars-white-color" id="science">
+                    SCIENCE 
+                    <span class="lcars-button-addition" id="sciencevalue">05</span>
+                </a>
+                <a href="#" onclick="changeAttr2('medicine')" class="lcars-button radius lcars-salmon-bg lcars-white-color" id="medicine">
+                    MEDICINE
+                    <span class="lcars-button-addition" id="medicinevalue">03</span>
+                </a>
+            </div>
+            <div class="lcars-column u-1-8">
+                <ul class="lcars-menu right">
+                    <li class="lcars-grayBlue-bg"><a href="#" onclick="addDie">FOCUSES</a></li>
+                    <li class="lcars-grayBlue-bg">Survival Training</li>
+                    <li class="lcars-red-bg">Uniform Code of Justice</li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="lcars-row">
+            <div class="lcars-column u-1-8">
+                <ul class="lcars-menu">
+                    <li class="lcars-red-bg">Tricorder</li>
+                    <li class="lcars-blue-bg"></li>
+                    
+                </ul>
+            </div>
+            <div class="lcars-column u-5-8">
+                <div class="lcars-button radius">
+                    NAME/TYPE
+                    <div class="lcars-button-addition">Phaser Type-2</div>
+                </div>
+                <div class="lcars-button radius">
+                    &#9698;
+                    <div class="lcars-button-addition">5</div>
+                </div>
+                <div class="lcars-button radius">
+                    QUALITIES
+                    <div class="lcars-button-addition">Ranged, Size 1H, Charge</div>
+                </div>
+                
+            </div>
+            <div class="lcars-column u-1-8">&nbsp;</div>
+            <div class="lcars-column u-1-8">
+                <ul class="lcars-menu right">
+                    <li class="lcars-grayBlue-bg">Zenoanthropology</li>
+                    <li class="lcars-blue-bg">Hand Phasers</li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="lcars-row">
+            <div class="lcars-column u-1-8">
+                <ul class="lcars-menu">
+                    <li class="lcars-purple-bg"></li>
+                    <li class="lcars-salmon-bg large-gap"></li>
+                    <li class="lcars-peach-bg">VALUES</li>
+                    <li class="lcars-purple-bg tall">Understanding is the Purpose of Life<br>Seek Out New Life and New Civilizations</li>
+                    <li class="lcars-blue-bg tall">Seen Too Much to be Surprised<br>Living with your Ideals is Harder than Dying for Them</li>
+                    
+                </ul>
+            </div>
+            <div class="lcars-column u-2-8">
+                <div class="lcars-button radius space">
+                    <div class="lcars-button-addition lcars-purple-color">AUXILLARY DATA</div>
+                </div>
+                <ul class="lcars-menu">
+                    <li class="lcars-purple-bg tall" contenteditable="true"></li>
+                    <li class="lcars-blue-bg tall" contenteditable="true"></li>
+                </ul>
+            </div>
+            <div class="lcars-column u-2-8">
+                <ul class="lcars-menu">
+                    <li class="lcars-tan-bg tall" contenteditable="true"></li>
+                    <li class="lcars-salmon-bg tall" contenteditable="true"></li>
+                    <li class="lcars-red-bg tall" contenteditable="true"></li>
+                </ul>
+            </div>
+            <div class="lcars-column u-2-8">
+                <ul class="lcars-menu">
+                    <li class="lcars-grayBlue-bg tall" contenteditable="true"></li>
+                    <li class="lcars-pink-bg tall" contenteditable="true"></li>
+                    <li class="lcars-orange-bg tall" contenteditable="true"></li>
+                </ul>
+            </div>
+            <div class="lcars-column u-1-8">
+                 <ul class="lcars-menu right">
+                    <li class="lcars-salmon-bg">Linguistics</li>
+                    <li class="lcars-pink-bg large-gap">Psychology</li>
+                    <li class="lcars-peach-bg">TALENTS</li>
+                    <li class="lcars-grayBlue-bg">Cautious (Science)</li>
+                    <li class="lcars-pink-bg">Intense Scrutiny</li>
+                    <li class="lcars-purple-bg">Joined</li>
+                    <li class="lcars-blue-bg">Technical Expertise</li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
